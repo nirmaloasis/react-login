@@ -1,4 +1,6 @@
 
+
+
 function Login(email, password) {
 if (email) {
   ShowSuccessAtDOM("container", email);
@@ -35,7 +37,11 @@ var LoginForm = React.createClass({
   ValidateLogin() {
     var email = this.refs.LoginEmail.state.value;
     var password = this.refs.LoginPassword.state.value;
-    Login(email, password);
+    var params ={username: email,password:password};
+    var request = new XMLHttpRequest();
+    request.open('POST', '/login', true);
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    request.send(JSON.stringify(params));
   },
   render() {
     return (
